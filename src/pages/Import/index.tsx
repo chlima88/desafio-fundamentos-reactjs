@@ -24,6 +24,9 @@ const Import: React.FC = () => {
 
   async function handleUpload(): Promise<void> {
     const data = new FormData();
+
+    if (!uploadedFiles.length) return;
+
     uploadedFiles.map(uploadedFile => data.append('file', uploadedFile.file));
 
     try {
@@ -41,7 +44,7 @@ const Import: React.FC = () => {
       readableSize: filesize(file.size),
     }));
 
-    setUploadedFiles([...uploadedFiles, ...fileToUpload]);
+    setUploadedFiles(fileToUpload);
   }
 
   return (
